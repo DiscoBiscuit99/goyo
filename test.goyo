@@ -1,16 +1,21 @@
+# comment here
+
+# assignment
 let x := 5;
 let y := 3;
 let z := x + y;
 
-func add5(x)
+# functions
+func f(x)
     x + 5;
 end
 
-#if true then
-#    print(true)
-#elseif false then
-#    print(false)
-#else
-#    print("else")
-#end
+# logic
+if true || false then
+    #print(true)
+else if false && true then
+    #print(false)
+else
+    #print("else")
+end
 
