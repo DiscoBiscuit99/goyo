@@ -1,0 +1,16 @@
+let x := 5;
+let y := 3;
+let z := x + y;
+
+func add5(x)
+    x + 5;
+end
+
+#if true then
+#    print(true)
+#elseif false then
+#    print(false)
+#else
+#    print("else")
+#end
+
