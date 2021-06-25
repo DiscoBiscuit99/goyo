@@ -16,6 +16,6 @@ if true || false then
 else if false && true then
     #print(false)
 else
-    #print("else")
+    print("else")
 end
 

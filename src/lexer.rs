@@ -38,7 +38,7 @@ impl Lexer {
     }
 
     pub fn tokenize(&mut self) {
-        while !self.is_at_end() {
+        while !self.end_reached() {
             self.consume_token();
         }
     }
@@ -119,7 +119,7 @@ impl Lexer {
     }
 
     fn consume_char(&mut self) -> char {
-        if self.is_at_end() { return '\0' }
+        if self.end_reached() { return '\0' }
         self.source.remove(0)
     }
 
@@ -140,31 +140,36 @@ impl Lexer {
 
     fn consume_string(&mut self, first_char: char) {
         let mut string = first_char.to_string();
-        while !self.is_at_end() && self.peek() != '"' {
-            string.push(self.consume_char());
-        }
 
-        // TODO: append the last '"'
+        while !self.end_reached() && self.peek() != '"' {
+            string.push(self.consume_char());
+        } 
+        string.push(self.consume_char());
+
+        self.add_token(TokenType::String, string);
     }
 
     fn consume_identifier(&mut self, first_char: char) {
         let mut identifier = first_char.to_string();
-        while self.peek().is_alphanumeric() { identifier.push(self.consume_char()); }
-       
+        while self.peek().is_alphanumeric() { identifier.push(self.consume_char()); } 
+        let type_of_token: TokenType;
+
         if let Some(token_type) = self.keywords.get(&identifier) {
-            self.add_token(*token_type, identifier);
+            type_of_token = *token_type;
         } else {
-            self.add_token(TokenType::Identifier, identifier);
+            type_of_token = TokenType::Identifier;
         }
+
+        self.add_token(type_of_token, identifier);
     }
 
     fn peek(&self) -> char {
-        if self.is_at_end() { return '\0' }
+        if self.end_reached() { return '\0' }
         self.source.chars().next().unwrap()
     }
 
     fn peek_next(&self) -> char {
-        if self.is_at_end() { return '\0' }
+        if self.end_reached() { return '\0' }
         self.source.chars().nth(1).unwrap()
     }
 
@@ -173,7 +178,7 @@ impl Lexer {
     }
 
     // just a wrapper function
-    fn is_at_end(&self) -> bool {
+    fn end_reached(&self) -> bool {
         self.source.is_empty()
     }
 }

@@ -1,5 +1,3 @@
-use std::fmt;
-
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum TokenType {
     // one or two character tokens
@@ -10,7 +8,7 @@ pub enum TokenType {
     Semicolon, ColonEqual,
 
     // literals
-    Identifier, Str, Number,
+    Identifier, String, Number,
 
     // keywords (Slf := Self)
     Let, Func, End, And, 
@@ -23,13 +21,13 @@ pub enum TokenType {
 
 #[derive(Debug)]
 pub struct Token {
-    type_: TokenType,
+    token_type: TokenType,
     literal: String,
 }
 
 impl Token {
-    pub fn new(type_: TokenType, literal: String) -> Self {
-        Self { type_, literal }
+    pub fn new(token_type: TokenType, literal: String) -> Self {
+        Self { token_type, literal }
     }
 }
 

@@ -1,11 +1,4 @@
-mod token;
-use token::{
-    Token, 
-    TokenType,
-};
-
-mod lexer;
-use lexer::Lexer;
+use goyo::lexer::Lexer;
 
 fn main() {
     let mut lexer = Lexer::init("test.goyo");
@@ -15,5 +8,7 @@ fn main() {
     for token in lexer.tokens {
         println!("{:?}", token);
     }
+
+
 }
 
