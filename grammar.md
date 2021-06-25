@@ -4,11 +4,12 @@
     - numbers
     - strings
     - booleans
+    - `nil`
 + Unary expressions
     - `-` negates a number
     - `!` negates a logical statement
 + Binary expressions
-    - Infix logic operators (`+`, `-`, `*`, `/`) 
+    - Infix arithmetic operators (`+`, `-`, `*`, `/`) 
     - Logic operators (`=`, `/=`, `<`, `<=`, `>`, `>=`)
 
 ```
